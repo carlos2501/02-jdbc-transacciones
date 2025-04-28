@@ -28,9 +28,10 @@ public class Transacciones {
             stmt.setString(4, "Madrid");
             stmt.executeUpdate();
             System.out.println("Añadido cliente 100");
-
-            String qry2 ="SELECT * FROM cliente WHERE codigo_cliente = ?";
-            PreparedStatement stmt2 = con.prepareStatement(qry2);
+        }
+        String qry2 ="SELECT * FROM cliente WHERE codigo_cliente = ?";
+        try (Connection con2 = ConexionBD.creaConexion();
+             PreparedStatement stmt2 = con2.prepareStatement(qry2)) {
             stmt2.setInt(1, 100);
             System.out.println("------ Comprobamos que se ha grabado en la BBDD -------");
             stmt2.execute();

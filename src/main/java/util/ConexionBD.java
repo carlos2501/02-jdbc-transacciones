@@ -13,7 +13,7 @@ public class ConexionBD {
 
     // este método crea una instancia de una conexión a la BBDD
     public static Connection creaConexion() throws SQLException {
-        if(conex == null){
+        if(conex == null || conex.isClosed()) {
             conex = DriverManager.getConnection(URL, USUARIO, CLAVE);
         }
         return conex;
