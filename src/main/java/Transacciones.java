@@ -13,10 +13,13 @@ public class Transacciones {
             }
         }
 
-        System.out.println("--------- Insertamos dos nuevos registros ---------------");
+        System.out.println("--------- Insertamos un nuevo registro ---------------");
         qry = "INSERT INTO cliente (codigo_cliente, nombre_cliente, telefono, ciudad) VALUES(?, ?, ?, ?)";
         try (Connection con = ConexionBD.creaConexion();
              PreparedStatement stmt = con.prepareStatement(qry)) {
+            // desactivamos autocommit
+            con.setAutoCommit(false);
+
             System.out.println("Conectado a la BBDD");
             // Asignamos los valores de los parámetros de la consulta para dos nuevos clientes
             stmt.setInt(1, 100);
