@@ -27,6 +27,7 @@ public class Transacciones {
             stmt.setString(3, "+34658745269");
             stmt.setString(4, "Madrid");
             stmt.executeUpdate();
+            con.commit();
             System.out.println("Añadido cliente 100");
         }
         String qry2 ="SELECT * FROM cliente WHERE codigo_cliente = ?";
