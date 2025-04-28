@@ -19,17 +19,29 @@ public class Transacciones {
              PreparedStatement stmt = con.prepareStatement(qry)) {
             // desactivamos autocommit
             con.setAutoCommit(false);
-
             System.out.println("Conectado a la BBDD");
-            // Asignamos los valores de los parámetros de la consulta para dos nuevos clientes
-            stmt.setInt(1, 100);
-            stmt.setString(2, "Carlos");
-            stmt.setString(3, "+34658745269");
-            stmt.setString(4, "Madrid");
-            stmt.executeUpdate();
-            con.commit();
-            System.out.println("Añadido cliente 100");
+            try {
+
+                // Asignamos los valores de los parámetros de la consulta para dos nuevos clientes
+                stmt.setInt(1, 100);
+                stmt.setString(2, "Carlos");
+                stmt.setString(3, "+34658745269");
+                stmt.setString(4, "Madrid");
+                stmt.executeUpdate();
+
+                stmt.setInt(1, 101);
+                stmt.setString(2, null);
+                stmt.setString(3, "+345698999");
+                stmt.setString(4, "Málaga");
+                stmt.executeUpdate();
+                con.commit();
+                System.out.println("Añadido cliente 100");
+            } catch (SQLException e) {
+                con.rollback();
+                System.out.println("Deshecha la transacción debido a " + e.getMessage());
+            }
         }
+
         String qry2 ="SELECT * FROM cliente WHERE codigo_cliente = ?";
         try (Connection con2 = ConexionBD.creaConexion();
              PreparedStatement stmt2 = con2.prepareStatement(qry2)) {
