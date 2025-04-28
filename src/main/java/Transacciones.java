@@ -21,7 +21,6 @@ public class Transacciones {
             con.setAutoCommit(false);
             System.out.println("Conectado a la BBDD");
             try {
-
                 // Asignamos los valores de los parámetros de la consulta para dos nuevos clientes
                 stmt.setInt(1, 100);
                 stmt.setString(2, "Carlos");
@@ -39,6 +38,8 @@ public class Transacciones {
             } catch (SQLException e) {
                 con.rollback();
                 System.out.println("Deshecha la transacción debido a " + e.getMessage());
+            } finally {
+                con.setAutoCommit(true);
             }
         }
 
