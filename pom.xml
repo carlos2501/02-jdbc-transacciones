@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.cpl_cursos</groupId>
-    <artifactId>02-jdbc-transacciones</artifactId>
+    <artifactId>1</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
